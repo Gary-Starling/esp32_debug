@@ -1,0 +1,22 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "gdb",
+            "request": "launch",
+            "name": "Flash and Debug",
+            "target": "C:/esp/esp-idf/examples/get-started/hello_world/build/hello-world.elf",
+            "cwd": "${workspaceFolder}",
+            "gdbpath": "C:/esp/.espressif/tools/xtensa-esp32-elf/esp-2020r3-8.4.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-gdb.exe",
+            "autorun": [
+                "target remote :3333",
+                "mon reset halt",
+                "mon program_esp32 ./build/hellow_world.bin 0x10000 verify",
+                "flushregs",
+                "thb app_main",
+                "c"
+            ],
+            "preLaunchTask": "openocd"
+        }
+    ]
+}
